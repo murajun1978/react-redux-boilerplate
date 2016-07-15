@@ -1,61 +1,10 @@
-var rucksack = require('rucksack-css')
-var webpack = require('webpack')
-var path = require('path')
+import {
+    Config,
+    ConfigEnvironment
+} from 'webpack-config'
 
-module.exports = {
-  context: path.join(__dirname, './client'),
-  entry: {
-    jsx: './index.js',
-    html: './index.html',
-  },
-  output: {
-    path: path.join(__dirname, './static'),
-    filename: 'bundle.js',
-  },
-  module: {
-    loaders: [
-      {
-        test: /\.html$/,
-        loader: 'file?name=[name].[ext]'
-      },
-      {
-        test: /\.css$/,
-        include: /client/,
-        loaders: [
-          'style-loader',
-          'css-loader?modules&sourceMap&importLoaders=1&localIdentName=[local]___[hash:base64:5]',
-          'postcss-loader'
-        ]
-      },
-      {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        loaders: [
-          'react-hot',
-          'babel-loader'
-        ]
-      },
-    ],
-  },
-  resolve: {
-    extensions: ['', '.js', '.jsx']
-  },
-  postcss: [
-    rucksack({
-      autoprefixer: true
-    })
-  ],
-  plugins: [
-    new webpack.DefinePlugin({
-      'process.env': { NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development') }
-    })
-  ],
-  devServer: {
-    contentBase: './client',
-    port: 4000,
-    historyApiFallback: true,
-    inline: true,
-    color: true,
-    hot: true
-  }
-}
+ConfigEnvironment.INSTANCE.setAll({
+    env: () => process.env.WEBPACK_ENV || process.env.NODE_ENV
+})
+
+export default new Config().extend('./config/webpack.[env].config.js')
