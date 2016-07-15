@@ -3,13 +3,22 @@ import path from 'path'
 import Config from 'webpack-config'
 
 export default new Config().merge({
-  context: path.join(__dirname, './client'),
+  context: path.join(__dirname, '../client'),
   entry: {
     jsx: './index.js',
     html: './index.html',
+    vendor: [
+      'react',
+      'react-dom',
+      'react-redux',
+      'react-router',
+      'react-router-redux',
+      'redux',
+      'redux-actions'
+    ]
   },
   output: {
-    path: path.join(__dirname, './static'),
+    path: path.join(__dirname, '../static'),
     filename: 'bundle.js',
   },
   module: {
