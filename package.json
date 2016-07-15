@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha",
-    "start": "webpack-dev-server -d"
+    "start": "webpack-dev-server -d --history-api-fallback --hot --inline --progress --colors"
   },
   "engines": {
     "node": ">=6"
