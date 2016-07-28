@@ -14,7 +14,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "isomorphic-fetch": "^2.2.1",
+    "axios": "^0.13.1",
     "react": "^15.2.1",
     "react-dom": "^15.2.1",
     "react-redux": "^4.4.5",
@@ -27,6 +27,7 @@
   "devDependencies": {
     "babel-core": "^6.10.4",
     "babel-loader": "^6.2.4",
+    "babel-polyfill": "^6.9.1",
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-power-assert": "^1.0.0",
     "babel-preset-react": "^6.11.1",
